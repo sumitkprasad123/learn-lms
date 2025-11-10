@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const authRoutes = require("./routes/auth-routes/index");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -12,7 +13,7 @@ cors({
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 });
-
+app.use(cors());
 app.use(express.json());
 
 //database connection
@@ -29,6 +30,7 @@ mongoose
   });
 
 //routes configuration
+app.use("/auth", authRoutes);
 
 //global error handler
 app.use((err, req, res, next) => {
