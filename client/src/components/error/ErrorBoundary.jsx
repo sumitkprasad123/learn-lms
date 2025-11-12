@@ -23,15 +23,18 @@ class ErrorBoundary extends React.Component {
           <h2 className="text-2xl font-semibold text-red-600 mb-2">
             Something went wrong 😢
           </h2>
-          <p className="text-gray-600">
+          <h3 className="text-gray-600">
             {this.state.error?.message || "An unexpected error occurred."}
-          </p>
+          </h3>
           <button
             onClick={() => window.location.reload()}
             className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
           >
             Reload Page
           </button>
+          <br />
+          <br />
+          <p>{this.state.error?.stack}</p>
         </div>
       );
     }
