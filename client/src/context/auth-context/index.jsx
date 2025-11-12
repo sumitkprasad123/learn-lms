@@ -1,3 +1,4 @@
+import { Skeleton } from "@/components/ui/skeleton";
 import { initialSignInFormData, initialSignUpFormData } from "@/config";
 import {
   checkAuthService,
@@ -72,12 +73,12 @@ export default function AuthProvider({ children }) {
     }
   }
 
-  // function resetCredentials() {
-  //   setAuth({
-  //     authenticate: false,
-  //     user: null,
-  //   });
-  // }
+  function resetCredentials() {
+    setAuth({
+      authenticate: false,
+      user: null,
+    });
+  }
 
   useEffect(() => {
     checkAuthUser();
@@ -86,15 +87,18 @@ export default function AuthProvider({ children }) {
   return (
     <AuthContext.Provider
       value={{
+        auth,
+        setAuth,
         signInFormData,
         setSignInFormData,
         signUpFormData,
         setSignUpFormData,
         handleRegisterUser,
         handleLoginUser,
+        resetCredentials,
       }}
     >
-      {children}
+      {loading ? <Skeleton /> : children}
     </AuthContext.Provider>
   );
 }
