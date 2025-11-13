@@ -20,3 +20,22 @@ export async function checkAuthService() {
 
   return data;
 }
+
+export async function mediaUploadService(formData, onProgressCallback) {
+  const { data } = await axiosInstance.post("/media/upload", formData, {
+    onUploadProgress: (ProgressEvent) => {
+      const percentageCompleted = Math.round(
+        (ProgressEvent.loaded * 100) / ProgressEvent.total
+      );
+      onProgressCallback(percentageCompleted);
+    },
+  });
+
+  return data;
+}
+
+export async function mediaDeleteService(id) {
+  const { data } = await axiosInstance.delete(`/media/delete/${id}`);
+
+  return data;
+}
