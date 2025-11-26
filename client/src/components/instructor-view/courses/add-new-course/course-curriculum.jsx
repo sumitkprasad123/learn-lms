@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import VideoPlayer from "@/components/video-player";
+import { courseCurriculumInitialFormData } from "@/config";
 import { InstructorContext } from "@/context/instructor-context";
 import {
   mediaDeleteService,
@@ -26,7 +27,7 @@ function CourseCurriculum() {
     setCourseCurriculumFormData([
       ...courseCurriculumFormData,
       {
-        ...courseCurriculumFormData[0],
+        ...courseCurriculumInitialFormData[0],
       },
     ]);
   }

@@ -4,8 +4,6 @@ import { Fragment } from "react";
 function RouteGuard({ authenticate, user, element }) {
   const location = useLocation();
 
-  console.log(authenticate, user, "useruser");
-
   if (!authenticate && !location.pathname.includes("/auth")) {
     return <Navigate to="/auth" />;
   }
